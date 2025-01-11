@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import { Stage, Layer } from "react-konva";
+import FallingSnowflake from "./components/FallingSnowflake";
+import CenteredBlock from "./components/CenteredBlock";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const getWindowSize = () => ({
+  width: window.innerWidth,
+  height: window.innerHeight,
+});
+
+const App = () => {
+  const [layerSize, setLayerWidth] = useState(getWindowSize);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setLayerWidth(getWindowSize());
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      <div className="background-container">
+        <Stage width={layerSize.width - 8} height={layerSize.height - 20}>
+          <Layer>
+            {[...Array(500)].map((_, i) => (
+              <FallingSnowflake layerSize={layerSize} key={i} />
+            ))}
+          </Layer>
+        </Stage>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <CenteredBlock />
+    </div>
+  );
+};
 
-export default App
+export default App;
