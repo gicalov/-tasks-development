@@ -77,8 +77,8 @@ const FallingSnowflake: React.FC<IFallingSnowflake> = ({ layerSize }) => {
           context.moveTo(centerX, centerY);
           context.lineTo(startX, startY);
 
-          for (let j = 1; j <= 4; j++) {
-            const angleOffset = (Math.PI / 2) * j;
+          for (let j = 1; j <= 9; j++) {
+            const angleOffset = (Math.PI / 3) * j;
 
             const branchOffsetX =
               startX + Math.cos(angle + angleOffset) * (branchLength / 3);
