@@ -1,16 +1,21 @@
 import React, { useRef, useEffect } from "react";
 import Konva from "konva";
 import { Shape } from "react-konva";
-import { IFallingSnowflake, IShapePositionRef } from "./interface";
+import { IFallingSnowflake, IShapePositionRef } from "../../interfaces";
 
-const FallingSnowflake: React.FC<IFallingSnowflake> = ({ layerSize }) => {
-  const snowflakeSize = layerSize.width / 96;
-  const branchesCount = 6;
-  const rotationSpeed = 0.7;
-  const fallingSpeed = 0.7;
-
+const FallingSnowflake: React.FC<IFallingSnowflake> = ({
+  layerSize,
+  snowflakeOptions,
+}) => {
   const shapeRef = useRef<Konva.Shape>(null);
   const shapePositionRef = useRef<IShapePositionRef>(null);
+
+  const branchesCount = snowflakeOptions.branchesCount || 6;
+  const rotationSpeed = snowflakeOptions.rotationSpeed || 0.7;
+  const fallingSpeed = snowflakeOptions.fallingSpeed || 0.7;
+
+  const snowflakeSize =
+    (layerSize.width / 1000) * (snowflakeOptions.snowflakeSize || 10);
 
   useEffect(() => {
     if (shapeRef.current) {
