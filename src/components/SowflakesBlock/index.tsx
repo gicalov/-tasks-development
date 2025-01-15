@@ -10,7 +10,6 @@ const getWindowSize = () => ({
 });
 
 const SowflakesBlock: React.FC<ISowflakesBlock> = ({ snowflakeOptions }) => {
-  const snowflakesCount = 50;
   const [layerSize, setLayerSize] = useState(getWindowSize);
   const boxRef = useRef<HTMLDivElement | null>(null);
 
@@ -34,7 +33,7 @@ const SowflakesBlock: React.FC<ISowflakesBlock> = ({ snowflakeOptions }) => {
     <div className="background-container" ref={boxRef}>
       <Stage width={layerSize.width - 8} height={layerSize.height - 20}>
         <Layer>
-          {[...Array(snowflakesCount)].map((_, i) => (
+          {[...Array(snowflakeOptions?.snowflakesCount || 50)].map((_, i) => (
             <FallingSnowflake
               layerSize={layerSize}
               key={i}

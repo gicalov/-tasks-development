@@ -4,6 +4,8 @@ import "./App.css";
 
 const App = () => {
   const snowflakeOptions = {
+    // all fields are optional
+    snowflakesCount: 50,
     snowflakeSize: 10,
     branchesCount: 6,
     rotationSpeed: 0.7,
@@ -13,7 +15,8 @@ const App = () => {
   return (
     <div className="wrapper">
       <div className="background">
-        <SowflakesBlock snowflakeOptions={snowflakeOptions} />
+        <SowflakesBlock snowflakeOptions={snowflakeOptions} />{" "}
+        {/* snowflakeOptions optional props */}
       </div>
       <CenteredBlock />
     </div>

@@ -1,6 +1,6 @@
 export interface IFallingSnowflake {
   layerSize: { width: number; height: number };
-  snowflakeOptions: ISnowflakeOptions;
+  snowflakeOptions?: ISnowflakeOptions;
 }
 
 export interface IShapePositionRef {
@@ -9,12 +9,13 @@ export interface IShapePositionRef {
 }
 
 export interface ISnowflakeOptions {
-  snowflakeSize: number;
-  branchesCount: number;
-  rotationSpeed: number;
-  fallingSpeed: number;
+  snowflakesCount?: number;
+  snowflakeSize?: number;
+  branchesCount?: number;
+  rotationSpeed?: number;
+  fallingSpeed?: number;
 }
 
 export interface ISowflakesBlock {
-  snowflakeOptions: ISnowflakeOptions;
+  snowflakeOptions?: ISnowflakeOptions;
 }
