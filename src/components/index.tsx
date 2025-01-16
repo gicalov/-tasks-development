@@ -1,3 +1,3 @@
-import SowflakesBlock from "./SowflakesBlock/index.tsx";
+import SowflakesBlock from "./SowflakesBlock";
 
 export { SowflakesBlock };

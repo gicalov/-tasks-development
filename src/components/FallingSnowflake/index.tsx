@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import Konva from "konva";
 import { Shape } from "react-konva";
-import { IFallingSnowflake, IShapePositionRef } from "../../interfaces";
+import { IFallingSnowflake, IShapePositionRef } from "../interfaces";
 
 const FallingSnowflake: React.FC<IFallingSnowflake> = ({
   layerSize,

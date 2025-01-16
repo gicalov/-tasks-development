@@ -1,38 +1,30 @@
-import { fileURLToPath } from "url";
-import { dirname } from "path";
+const path = require("path");
 
-// Определение __dirname
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-export default {
-  mode: "development",
+module.exports = {
+  mode: "production",
   entry: "./src/components/index.tsx",
   output: {
-    path: `${__dirname}/dist`,
+    path: path.resolve(__dirname, "dist"),
     filename: "index.js",
-    library: "MyLibrary",
+    library: "MyReactLibrary",
     libraryTarget: "umd",
     globalObject: "this",
+    umdNamedDefine: true,
   },
   module: {
     rules: [
       {
-        test: /\.tsx?$/, // соответствие .ts и .tsx файлам
+        test: /\.tsx?$/,
         use: "ts-loader",
         exclude: /node_modules/,
       },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
-      },
     ],
   },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
+  },
   externals: {
-    react: "React",
-    "react-dom": "ReactDOM",
+    react: "react",
+    "react-dom": "react-dom",
   },
 };
