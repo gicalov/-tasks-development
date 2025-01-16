@@ -1,8 +1,10 @@
 import CenteredBlock from "./components/CenteredBlock";
-import SowflakesBlock from "./components/SowflakesBlock";
+// import SowflakesBlock from "./components/SowflakesBlock";
+import SowflakesBlock from "falling-snowflakes";
 import "./App.css";
 
 const App = () => {
+  console.log(SowflakesBlock);
   const snowflakeOptions = {
     // all fields are optional
     snowflakesCount: 50,
