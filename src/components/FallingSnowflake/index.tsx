@@ -7,6 +7,7 @@ const FallingSnowflake: React.FC<IFallingSnowflake> = ({
   layerSize,
   snowflakeOptions,
 }) => {
+  console.log(5);
   const shapeRef = useRef<Konva.Shape>(null);
   const shapePositionRef = useRef<IShapePositionRef>(null);
 

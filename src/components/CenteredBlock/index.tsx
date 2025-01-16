@@ -1,8 +1,8 @@
-
 import React from "react";
 import "./style.css";
 
 const CenteredBlock = () => {
+  console.log(5);
   return (
     <div className="container">
       <div className="centered-block">
