@@ -6,8 +6,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: "src/components/MyComponent.tsx", // Укажите входной файл вашей библиотеки
-      name: "MyReactLibrary", // Имя библиотеки
-      fileName: (format) => `my-react-library.${format}.js`, // Формат выходного файла
+      name: "falling-snowflakes-2", // Имя библиотеки
+      fileName: (format) => `falling-snowflakes-2.${format}.js`, // Формат выходного файла
     },
     rollupOptions: {
       // Здесь вы можете настроить Rollup
