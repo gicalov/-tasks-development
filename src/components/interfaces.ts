@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface IFallingSnowflake {
   layerSize: { width: number; height: number };
   snowflakeOptions?: ISnowflakeOptions;
@@ -18,4 +20,5 @@ export interface ISnowflakeOptions {
 
 export interface ISowflakesBlock {
   snowflakeOptions?: ISnowflakeOptions;
+  children?: ReactNode;
 }

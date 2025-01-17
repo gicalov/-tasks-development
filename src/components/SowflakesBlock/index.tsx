@@ -9,7 +9,10 @@ const getWindowSize = () => ({
   height: window.innerHeight,
 });
 
-const SowflakesBlock: React.FC<ISowflakesBlock> = ({ snowflakeOptions }) => {
+const SowflakesBlock: React.FC<ISowflakesBlock> = ({
+  snowflakeOptions,
+  children,
+}) => {
   const [layerSize, setLayerSize] = useState(getWindowSize);
   const boxRef = useRef<HTMLDivElement | null>(null);
 
@@ -30,18 +33,31 @@ const SowflakesBlock: React.FC<ISowflakesBlock> = ({ snowflakeOptions }) => {
   }, []);
 
   return (
-    <div className="background-container" ref={boxRef}>
-      <Stage width={layerSize.width - 8} height={layerSize.height - 20}>
-        <Layer>
-          {[...Array(snowflakeOptions?.snowflakesCount || 50)].map((_, i) => (
-            <FallingSnowflake
-              layerSize={layerSize}
-              key={i}
-              snowflakeOptions={snowflakeOptions}
-            />
-          ))}
-        </Layer>
-      </Stage>
+    <div
+      style={{ width: "100%", height: "100%", position: "relative" }}
+      ref={boxRef}
+    >
+      {children}
+      <div
+        style={{
+          position: "absolute",
+          top: "0",
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        <Stage width={layerSize.width} height={layerSize.height}>
+          <Layer>
+            {[...Array(snowflakeOptions?.snowflakesCount || 50)].map((_, i) => (
+              <FallingSnowflake
+                layerSize={layerSize}
+                key={i}
+                snowflakeOptions={snowflakeOptions}
+              />
+            ))}
+          </Layer>
+        </Stage>
+      </div>
     </div>
   );
 };

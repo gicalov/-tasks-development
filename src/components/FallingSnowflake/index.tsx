@@ -20,9 +20,9 @@ const FallingSnowflake: React.FC<IFallingSnowflake> = ({
   useEffect(() => {
     if (shapeRef.current) {
       const shape = shapeRef.current;
-      const stageHeight = window.innerHeight;
+      const stageHeight = layerSize.height;
       const endY = stageHeight + 100;
-      const stageWidth = window.innerWidth;
+      const stageWidth = layerSize.width;
       const shapeWidth = shape.width();
 
       const startCoordinate = shapePositionRef.current
