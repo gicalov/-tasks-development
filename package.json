@@ -1,8 +1,16 @@
 {
   "name": "falling-snowflakes-2",
   "private": false,
-  "version": "1.0.2",
+  "version": "1.0.19",
   "type": "module",
+  "description": "My React Library",
+  "main": "dist/falling-snowflakes-2.umd.js",
+  "module": "dist/falling-snowflakes-2.es.js",
+  "types": "global.d.ts",
+  "files": [
+    "dist/*",
+    "global.d.ts"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -10,8 +18,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-konva": "^19.0.2"
   },
   "devDependencies": {
@@ -28,5 +36,8 @@
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.18.2",
     "vite": "^6.0.7"
+  },
+  "peerDependencies": {
+    "react-konva": "^19.0.2"
   }
 }

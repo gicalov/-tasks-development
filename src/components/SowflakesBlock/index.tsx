@@ -10,7 +10,6 @@ const getWindowSize = () => ({
 });
 
 const SowflakesBlock: React.FC<ISowflakesBlock> = ({ snowflakeOptions }) => {
-  console.log(2);
   const [layerSize, setLayerSize] = useState(getWindowSize);
   const boxRef = useRef<HTMLDivElement | null>(null);
 
@@ -29,7 +28,7 @@ const SowflakesBlock: React.FC<ISowflakesBlock> = ({ snowflakeOptions }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  console.log(3);
+
   return (
     <div className="background-container" ref={boxRef}>
       <Stage width={layerSize.width - 8} height={layerSize.height - 20}>

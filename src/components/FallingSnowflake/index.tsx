@@ -7,9 +7,8 @@ const FallingSnowflake: React.FC<IFallingSnowflake> = ({
   layerSize,
   snowflakeOptions,
 }) => {
-  console.log(5);
   const shapeRef = useRef<Konva.Shape>(null);
-  const shapePositionRef = useRef<IShapePositionRef>(null);
+  const shapePositionRef = useRef<IShapePositionRef | null>(null);
 
   const branchesCount = snowflakeOptions?.branchesCount || 6;
   const rotationSpeed = snowflakeOptions?.rotationSpeed || 0.7;
@@ -52,8 +51,10 @@ const FallingSnowflake: React.FC<IFallingSnowflake> = ({
 
       return () => {
         anim.stop();
-        shapePositionRef.current!.positionX = shape.x() / stageWidth;
-        shapePositionRef.current!.positionY = shape.y() / stageHeight;
+        shapePositionRef.current = {
+          positionX: shape.x() / stageWidth,
+          positionY: shape.y() / stageHeight,
+        };
       };
     }
   }, [fallingSpeed, layerSize, rotationSpeed]);
