@@ -1,16 +1,21 @@
 import React, { useRef, useEffect } from "react";
 import Konva from "konva";
 import { Shape } from "react-konva";
-import { IFallingSnowflake, IShapePositionRef } from "./interface";
+import { IFallingSnowflake, IShapePositionRef } from "../../interfaces";
 
-const FallingSnowflake: React.FC<IFallingSnowflake> = ({ layerSize }) => {
-  const snowflakeSize = layerSize.width / 96;
-  const branchesCount = 6;
-  const rotationSpeed = 0.7;
-  const fallingSpeed = 0.7;
-
+const FallingSnowflake: React.FC<IFallingSnowflake> = ({
+  layerSize,
+  snowflakeOptions,
+}) => {
   const shapeRef = useRef<Konva.Shape>(null);
   const shapePositionRef = useRef<IShapePositionRef>(null);
+
+  const branchesCount = snowflakeOptions?.branchesCount || 6;
+  const rotationSpeed = snowflakeOptions?.rotationSpeed || 0.7;
+  const fallingSpeed = snowflakeOptions?.fallingSpeed || 0.7;
+
+  const snowflakeSize =
+    (layerSize.width / 1000) * (snowflakeOptions?.snowflakeSize || 10);
 
   useEffect(() => {
     if (shapeRef.current) {
@@ -52,7 +57,7 @@ const FallingSnowflake: React.FC<IFallingSnowflake> = ({ layerSize }) => {
         };
       };
     }
-  }, [layerSize]);
+  }, [fallingSpeed, layerSize, rotationSpeed]);
 
   return (
     <Shape
@@ -68,27 +73,31 @@ const FallingSnowflake: React.FC<IFallingSnowflake> = ({ layerSize }) => {
 
         context.beginPath();
 
-        for (let i = 0; i < branchesCount; i++) {
-          const angle = (i * Math.PI) / (branchesCount / 2);
+        const drawSnowflake = () => {
+          for (let i = 0; i < branchesCount; i++) {
+            const angle = (i * Math.PI) / (branchesCount / 2);
 
-          const startX = centerX + Math.cos(angle) * branchLength;
-          const startY = centerY + Math.sin(angle) * branchLength;
+            const startX = centerX + Math.cos(angle) * branchLength;
+            const startY = centerY + Math.sin(angle) * branchLength;
 
-          context.moveTo(centerX, centerY);
-          context.lineTo(startX, startY);
+            context.moveTo(centerX, centerY);
+            context.lineTo(startX, startY);
 
-          for (let j = 1; j <= 4; j++) {
-            const angleOffset = (Math.PI / 2) * j;
+            for (let j = 1; j <= 9; j++) {
+              const angleOffset = (Math.PI / 3) * j;
 
-            const branchOffsetX =
-              startX + Math.cos(angle + angleOffset) * (branchLength / 3);
-            const branchOffsetY =
-              startY + Math.sin(angle + angleOffset) * (branchLength / 3);
+              const branchOffsetX =
+                startX + Math.cos(angle + angleOffset) * (branchLength / 3);
+              const branchOffsetY =
+                startY + Math.sin(angle + angleOffset) * (branchLength / 3);
 
-            context.moveTo(startX, startY);
-            context.lineTo(branchOffsetX, branchOffsetY);
+              context.moveTo(startX, startY);
+              context.lineTo(branchOffsetX, branchOffsetY);
+            }
           }
-        }
+        };
+
+        drawSnowflake();
 
         context.closePath();
         context.fillStrokeShape(shape);
