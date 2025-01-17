@@ -1,12 +1,22 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "jsx": "react",
-    "declaration": true,
-    "outDir": "./dist",
+    "target": "esnext",
+    "module": "esnext",
+    "jsx": "react-jsx",
     "strict": true,
-    "esModuleInterop": true
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src",
+    "global.d.ts" // Добавьте этот файл
+  ]
 }

@@ -52,10 +52,8 @@ const FallingSnowflake: React.FC<IFallingSnowflake> = ({
 
       return () => {
         anim.stop();
-        shapePositionRef.current = {
-          positionX: shape.x() / stageWidth,
-          positionY: shape.y() / stageHeight,
-        };
+        shapePositionRef.current!.positionX = shape.x() / stageWidth;
+        shapePositionRef.current!.positionY = shape.y() / stageHeight;
       };
     }
   }, [fallingSpeed, layerSize, rotationSpeed]);
