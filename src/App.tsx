@@ -1,26 +1,29 @@
-import CenteredBlock from "./components/CenteredBlock";
-// import SowflakesBlock from "./components/SowflakesBlock";
-import SowflakesBlock from "falling-snowflakes";
+import { SowflakesBlock } from "falling-snowflakes-2";
 import "./App.css";
 
 const App = () => {
-  console.log(SowflakesBlock);
   const snowflakeOptions = {
-    // all fields are optional
-    snowflakesCount: 50,
-    snowflakeSize: 10,
+    snowflakesCount: 30,
+    snowflakeSize: 20,
     branchesCount: 6,
-    rotationSpeed: 0.7,
-    fallingSpeed: 0.7,
+    rotationSpeed: -1.7,
+    fallingSpeed: 3.7,
   };
 
   return (
-    <div className="wrapper">
-      <div className="background">
-        <SowflakesBlock snowflakeOptions={snowflakeOptions} />{" "}
-        {/* snowflakeOptions optional props */}
-      </div>
-      <CenteredBlock />
+    <div style={{ height: "800px", width: "100%" }}>
+      <SowflakesBlock snowflakeOptions={snowflakeOptions}>
+        <div
+          style={{
+            display: "flex",
+            margin: "auto",
+            // marginTop: "600px",
+            backgroundColor: "red",
+            width: "200px",
+            height: "100px",
+          }}
+        ></div>
+      </SowflakesBlock>
     </div>
   );
 };

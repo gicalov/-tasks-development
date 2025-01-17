@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "falling-snowflakes": "^1.0.0",
+    "falling-snowflakes-2": "^1.0.26",
     "konva": "^9.3.18",
     "react": "19.0.0",
     "react-dom": "19.0.0",
