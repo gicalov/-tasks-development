@@ -37,7 +37,6 @@ const SowflakesBlock: React.FC<ISowflakesBlock> = ({
       style={{ width: "100%", height: "100%", position: "relative" }}
       ref={boxRef}
     >
-      {children}
       <div
         style={{
           position: "absolute",
@@ -48,15 +47,26 @@ const SowflakesBlock: React.FC<ISowflakesBlock> = ({
       >
         <Stage width={layerSize.width} height={layerSize.height}>
           <Layer>
-            {[...Array(snowflakeOptions?.snowflakesCount || 50)].map((_, i) => (
-              <FallingSnowflake
-                layerSize={layerSize}
-                key={i}
-                snowflakeOptions={snowflakeOptions}
-              />
-            ))}
+            {[...Array(Math.abs(snowflakeOptions?.snowflakesCount || 50))].map(
+              (_, i) => (
+                <FallingSnowflake
+                  layerSize={layerSize}
+                  key={i}
+                  snowflakeOptions={snowflakeOptions}
+                />
+              )
+            )}
           </Layer>
         </Stage>
+      </div>
+      <div
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        {children}
       </div>
     </div>
   );

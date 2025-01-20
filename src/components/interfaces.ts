@@ -16,6 +16,7 @@ export interface ISnowflakeOptions {
   branchesCount?: number;
   rotationSpeed?: number;
   fallingSpeed?: number;
+  snowflakesColor?: string;
 }
 
 export interface ISowflakesBlock {

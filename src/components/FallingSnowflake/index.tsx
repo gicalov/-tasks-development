@@ -10,12 +10,18 @@ const FallingSnowflake: React.FC<IFallingSnowflake> = ({
   const shapeRef = useRef<Konva.Shape>(null);
   const shapePositionRef = useRef<IShapePositionRef | null>(null);
 
-  const branchesCount = snowflakeOptions?.branchesCount || 6;
-  const rotationSpeed = snowflakeOptions?.rotationSpeed || 0.7;
-  const fallingSpeed = snowflakeOptions?.fallingSpeed || 0.7;
+  const limitValue = (value: number, max: number): number => {
+    return Math.max(0, Math.min(value, max));
+  };
+
+  const branchesCount = limitValue(snowflakeOptions?.branchesCount || 6, 40);
+  const rotationSpeed = limitValue(snowflakeOptions?.rotationSpeed || 0.7, 200);
+  const fallingSpeed = limitValue(snowflakeOptions?.fallingSpeed || 0.7, 1000);
+  const snowflakesColor = snowflakeOptions?.snowflakesColor || "red";
 
   const snowflakeSize =
-    (layerSize.width / 1000) * (snowflakeOptions?.snowflakeSize || 10);
+    (layerSize.width / 1000) *
+    limitValue(snowflakeOptions?.snowflakeSize || 10, 100);
 
   useEffect(() => {
     if (shapeRef.current) {
@@ -102,8 +108,8 @@ const FallingSnowflake: React.FC<IFallingSnowflake> = ({
         context.closePath();
         context.fillStrokeShape(shape);
       }}
-      fill="#00D2FF"
-      stroke="#00D2FF"
+      fill={snowflakesColor}
+      stroke={snowflakesColor}
       strokeWidth={snowflakeSize / 10}
     />
   );
