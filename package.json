@@ -1,7 +1,7 @@
 {
   "name": "falling-snowflakes-2",
   "private": false,
-  "version": "1.2.2",
+  "version": "1.2.3",
   "type": "module",
   "description": "My React Library",
   "main": "dist/falling-snowflakes-2.umd.js",

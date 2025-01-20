@@ -2,6 +2,7 @@ import React, { useRef, useEffect, memo, useCallback } from "react";
 import Konva from "konva";
 import { limitValue } from "../../helpers/limitValue";
 import { getBranchParams } from "../../helpers/getBranchParams";
+import { getRandomValue } from "../../helpers/getRandomDiapazonValue";
 import {
   IFallingSnowflake,
   IShapePositionRef,
@@ -72,12 +73,16 @@ const FallingSnowflake: React.FC<IFallingSnowflake> = ({
   const fallingSpeed = limitValue(snowflakeOptions?.fallingSpeed ?? 0.7, 1000);
   const snowflakesColor = snowflakeOptions?.snowflakesColor || "#00D2FF";
   const snowflakeType = snowflakeOptions?.snowflakeType || 1;
+  const sizeSpread = snowflakeOptions?.sizeSpread ?? 0;
 
   const isSynchronousRotation = snowflakeOptions?.isSynchronousRotation ?? true;
 
   const snowflakeSize =
     (layerSize.width / 1000) *
-    limitValue(snowflakeOptions?.snowflakeSize || 10, 100);
+    limitValue(
+      getRandomValue(snowflakeOptions?.snowflakeSize || 10, sizeSpread),
+      100
+    );
 
   useEffect(() => {
     if (shapeRef.current) {
@@ -144,6 +149,7 @@ const FallingSnowflake: React.FC<IFallingSnowflake> = ({
         snowflakesCount: 1000,
         snowflakeSize,
         snowflakeType,
+        sizeSpread,
       });
     },
     [
