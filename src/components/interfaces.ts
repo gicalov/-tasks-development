@@ -17,6 +17,8 @@ export interface ISnowflakeOptions {
   rotationSpeed?: number;
   fallingSpeed?: number;
   snowflakesColor?: string;
+  snowflakeType?: number;
+  isSynchronousRotation?: boolean;
 }
 
 export interface ISowflakesBlock {

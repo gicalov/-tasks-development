@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import { Stage, Layer } from "react-konva";
 import FallingSnowflake from "../FallingSnowflake";
 import { ISowflakesBlock } from "../interfaces";
@@ -32,6 +32,10 @@ const SowflakesBlock: React.FC<ISowflakesBlock> = ({
     };
   }, []);
 
+  const count = useMemo(() => {
+    return [...Array(Math.abs(snowflakeOptions?.snowflakesCount || 50))];
+  }, [snowflakeOptions?.snowflakesCount]);
+
   return (
     <div
       style={{ width: "100%", height: "100%", position: "relative" }}
@@ -47,15 +51,13 @@ const SowflakesBlock: React.FC<ISowflakesBlock> = ({
       >
         <Stage width={layerSize.width} height={layerSize.height}>
           <Layer>
-            {[...Array(Math.abs(snowflakeOptions?.snowflakesCount || 50))].map(
-              (_, i) => (
-                <FallingSnowflake
-                  layerSize={layerSize}
-                  key={i}
-                  snowflakeOptions={snowflakeOptions}
-                />
-              )
-            )}
+            {count.map((_, i) => (
+              <FallingSnowflake
+                layerSize={layerSize}
+                key={i}
+                snowflakeOptions={snowflakeOptions}
+              />
+            ))}
           </Layer>
         </Stage>
       </div>
