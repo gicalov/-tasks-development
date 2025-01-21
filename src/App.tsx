@@ -2,7 +2,7 @@ import { useState, Fragment } from "react";
 import { SowflakesBlock } from "falling-snowflakes-2";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ISnowflakeOptions } from "./interfaces";
-import { initSnowflakeOptions, inputOptions } from "./constants";
+import { initSnowflakeOptions, inputOptions, styles } from "./constants";
 import "./App.css";
 
 const App = () => {
@@ -32,7 +32,6 @@ const App = () => {
                 <div
                   style={{
                     margin: "auto",
-                    border: "solid",
                     width: "240px",
                     padding: "20px",
                     boxSizing: "border-box",

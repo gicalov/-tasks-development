@@ -2,6 +2,7 @@ export const initSnowflakeOptions = {
   snowflakeType: 1,
   snowflakesCount: 30,
   snowflakeSize: 20,
+  sizeSpread: 0,
   branchesCount: 6,
   rotationSpeed: 2,
   fallingSpeed: 1,
@@ -25,6 +26,14 @@ export const inputOptions = [
     min: 0,
     max: 100,
     step: 1,
+  },
+  {
+    label: "Процент разброса размера:",
+    name: "sizeSpread",
+    type: "range",
+    min: 0,
+    max: 90,
+    step: 10,
   },
   {
     label: "Число ветвей:",
@@ -60,3 +69,7 @@ export const inputOptions = [
     step: 10,
   },
 ];
+
+export const styles = {
+  backGroundDark: { backgroundColor: "black" },
+};
